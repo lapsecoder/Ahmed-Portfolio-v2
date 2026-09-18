@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('projects');
+---
+
+<BaseLayout
+  title="Work"
+  description="Selected projects by Mohammed Ayaan Ahmed. Each project has a dedicated case study page."
+  current="/projects"
+>
+  <div class="page-hero reveal">
+    <p class="eyebrow">Work</p>
+    <h1 class="display">Projects with context, not just screenshots.</h1>
+    <p class="lede">
+      Every project lives on its own page with goals, stack, role and results. No crowded list, no
+      filler.
+    </p>
+  </div>
+
+  <section class="section">
+    {
+      projects.length === 0 ? (
+        <div class="card empty reveal">
+          <h3>Nothing published yet</h3>
+          <p class="lede">
+            I will add case studies here as soon as they are ready. Each one will explain the problem,
+            the approach and what I learned.
+          </p>
+          <p>
+            <a class="arrow-link" href="/hire-me">Discuss an idea →</a>
+          </p>
+        </div>
+      ) : (
+        <div class="work-grid">
+          {projects.map((p) => (
+            <a class="card preview-card reveal" href={`/projects/${p.id}`}>
+              <h3>{p.data.title}</h3>
+              <p>{p.data.summary}</p>
+              <span class="arrow-link">Open case study →</span>
+            </a>
+          ))}
+        </div>
+      )
+    }
+  </section>
+</BaseLayout>

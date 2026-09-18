@@ -1,0 +1,29 @@
+---
+interface Props {
+  current?: string;
+}
+const { current = '' } = Astro.props;
+const link = (href: string, label: string) =>
+  current === href ? `<a href="${href}" aria-current="page">${label}</a>` : `<a href="${href}">${label}</a>`;
+---
+
+<header class="site-header" id="top">
+  <div class="site-header-inner">
+    <a class="brand" href="/" aria-label="Home">
+      <span class="brand-mark">MA</span>
+      <span class="brand-text">
+        <strong>Mohammed Ayaan Ahmed</strong>
+        <span>CS AIML Student</span>
+      </span>
+    </a>
+
+    <button class="menu-btn" data-menu aria-label="Toggle menu">Menu</button>
+
+    <nav class="nav" data-nav aria-label="Primary">
+      <Fragment set:html={link('/projects', 'Work')} />
+      <Fragment set:html={link('/about', 'About')} />
+      <Fragment set:html={link('/hire-me', 'Hire Me')} />
+      <a class="nav-cta" href="mailto:ayaanmsrit@gmail.com">Email me</a>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+---
+
+<BaseLayout
+  title="About"
+  description="About Mohammed Ayaan Ahmed, Diploma CS AIML student. Education, skills and learning journey."
+  current="/about"
+>
+  <div class="page-hero reveal">
+    <p class="eyebrow">About</p>
+    <h1 class="display">Student with a bias for clear work.</h1>
+    <p class="lede">
+      I am Mohammed Ayaan Ahmed, a Diploma in Computer Science student focused on AI and ML. I enjoy
+      turning class concepts into small working projects with clean presentation.
+    </p>
+  </div>
+
+  <section class="section">
+    <SectionHeading eyebrow="Education" title="Where I study" />
+    <div class="card skill-group reveal">
+      <h3>Diploma in Computer Science</h3>
+      <p style="margin:0;color:var(--ink-soft)">Ramaiah Polytechnic</p>
+      <p style="margin:8px 0 0;color:var(--ink-soft)">
+        Currently entering 5th semester. Expected graduation: 2027. CGPA: 9.11.
+      </p>
+      <p style="margin:8px 0 0;color:var(--ink-soft)">
+        Relevant work includes Python programming, math for ML, data handling and web fundamentals.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <SectionHeading eyebrow="Skills" title="Grouped by craft" />
+    <div class="two-col">
+      <div class="card skill-group reveal">
+        <h3>Programming</h3>
+        <ul class="tags">
+          <li>Python</li>
+          <li>JavaScript basics</li>
+          <li>Git and GitHub</li>
+        </ul>
+      </div>
+      <div class="card skill-group reveal">
+        <h3>ML and data</h3>
+        <ul class="tags">
+          <li>scikit-learn basics</li>
+          <li>pandas</li>
+          <li>NumPy</li>
+          <li>Data cleaning</li>
+        </ul>
+      </div>
+      <div class="card skill-group reveal">
+        <h3>Web</h3>
+        <ul class="tags">
+          <li>Astro</li>
+          <li>HTML and CSS</li>
+          <li>Responsive layout</li>
+        </ul>
+      </div>
+      <div class="card skill-group reveal">
+        <h3>Working style</h3>
+        <ul class="tags">
+          <li>Clear writing</li>
+          <li>Simple design</li>
+          <li>Regular updates</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <SectionHeading eyebrow="Journey" title="Learning in plain words" />
+    <ul class="timeline reveal">
+      <li>
+        <time>Now</time>
+        <div>
+          <strong>Building foundations</strong>
+          <p style="margin:6px 0 0;color:var(--ink-soft)">
+            Diploma coursework plus self practice in Python, ML basics and web presentation.
+          </p>
+        </div>
+      </li>
+      <li>
+        <time>Next</time>
+        <div>
+          <strong>First case studies</strong>
+          <p style="margin:6px 0 0;color:var(--ink-soft)">
+            Publish focused projects with problem notes, approach and results.
+          </p>
+        </div>
+      </li>
+    </ul>
+  </section>
+</BaseLayout>

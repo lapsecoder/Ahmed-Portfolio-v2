@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+---
+
+<BaseLayout
+  title="Hire Me"
+  description="Hire Mohammed Ayaan Ahmed for internships, freelance support and student collaborations."
+  current="/hire-me"
+>
+  <div class="page-hero reveal">
+    <p class="eyebrow">Hire Me</p>
+    <h1 class="display">Clear help for small, well defined work.</h1>
+    <p class="lede">
+      I am open to internships, student collaborations and small freelance tasks around Python, data
+      cleanup, basic ML experiments and simple Astro sites.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-solid" href="mailto:ayaanmsrit@gmail.com?subject=Project%20inquiry">Email to start</a>
+      <a class="btn btn-ghost" href="tel:+918050425980">Call 80504 25980</a>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="hire-grid">
+      <div>
+        <SectionHeading eyebrow="Services" title="What I can help with" />
+        <div class="two-col">
+          <div class="card skill-group reveal">
+            <h3>Python support</h3>
+            <p style="margin:0;color:var(--ink-soft)">Scripts, automation and cleanup for class or side projects.</p>
+          </div>
+          <div class="card skill-group reveal">
+            <h3>Data basics</h3>
+            <p style="margin:0;color:var(--ink-soft)">Collect, clean and chart data with pandas for clear reports.</p>
+          </div>
+          <div class="card skill-group reveal">
+            <h3>ML starter work</h3>
+            <p style="margin:0;color:var(--ink-soft)">Baseline models and honest evaluation with scikit-learn.</p>
+          </div>
+          <div class="card skill-group reveal">
+            <h3>Simple sites</h3>
+            <p style="margin:0;color:var(--ink-soft)">Fast Astro pages for portfolios, clubs and events.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card skill-group reveal">
+        <p class="eyebrow">Process</p>
+        <h3 style="font-family:var(--font-display);font-size:24px;margin:0 0 10px;">Three calm steps</h3>
+        <p style="margin:0 0 12px;color:var(--ink-soft)"><strong>Share the goal.</strong> Send context, deadline and examples.</p>
+        <p style="margin:0 0 12px;color:var(--ink-soft)"><strong>Agree the scope.</strong> I confirm timeline and what is included.</p>
+        <p style="margin:0;color:var(--ink-soft)"><strong>Build in the open.</strong> Short updates and one clean handoff.</p>
+        <hr class="rule" style="margin:18px 0" />
+        <p class="eyebrow">Availability</p>
+        <p style="margin:0;color:var(--ink-soft)">Open part time alongside studies. Replies within one day on email.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <SectionHeading eyebrow="Contact" title="Reach me directly" />
+    <ul class="contact-list reveal">
+      <li>
+        <a href="mailto:ayaanmsrit@gmail.com">
+          Email <small>ayaanmsrit@gmail.com</small>
+        </a>
+      </li>
+      <li>
+        <a href="tel:+918050425980">
+          Phone <small>80504 25980</small>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/lapsecoder" target="_blank" rel="noreferrer">
+          GitHub <small>github.com/lapsecoder</small>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.instagram.com/ayaanahmed_1711/" target="_blank" rel="noreferrer">
+          Instagram <small>@ayaanahmed_1711</small>
+        </a>
+      </li>
+    </ul>
+  </section>
+</BaseLayout>

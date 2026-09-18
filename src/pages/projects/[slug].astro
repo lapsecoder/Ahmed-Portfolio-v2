@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<BaseLayout title={project.data.title} description={project.data.summary} current="/projects">
+  <div class="page-hero reveal">
+    <p class="eyebrow"><a href="/projects" style="color:inherit">Work</a> / Case study</p>
+    <h1 class="display">{project.data.title}</h1>
+    <p class="lede">{project.data.summary}</p>
+  </div>
+
+  <dl class="case-meta reveal">
+    <div>
+      <dt>Stack</dt>
+      <dd>{project.data.stack?.join(', ') || 'Details coming soon'}</dd>
+    </div>
+    <div>
+      <dt>Role</dt>
+      <dd>{project.data.role || 'Design and build'}</dd>
+    </div>
+    <div>
+      <dt>Links</dt>
+      <dd>
+        {
+          project.data.liveUrl || project.data.repoUrl || project.data.link ? (
+            <span>
+              {project.data.liveUrl && (
+                <a href={project.data.liveUrl} target="_blank" rel="noreferrer">Live link →</a>
+              )}
+              {project.data.liveUrl && project.data.repoUrl && <span> · </span>}
+              {project.data.repoUrl && (
+                <a href={project.data.repoUrl} target="_blank" rel="noreferrer">Repository →</a>
+              )}
+              {!project.data.liveUrl && !project.data.repoUrl && project.data.link && (
+                <a href={project.data.link} target="_blank" rel="noreferrer">Live link →</a>
+              )}
+            </span>
+          ) : (
+            'Links coming soon'
+          )
+        }
+      </dd>
+    </div>
+  </dl>
+
+  <article class="prose reveal">
+    <Content />
+  </article>
+
+  <section class="section">
+    <a class="arrow-link" href="/projects">← Back to all work</a>
+  </section>
+</BaseLayout>

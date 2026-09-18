@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('projects');
+const featured = projects.slice(0, 2);
+---
+
+<BaseLayout
+  title="Home"
+  description="Portfolio of Mohammed Ayaan Ahmed, Diploma in CS AIML student focused on practical machine learning and clean software."
+  current="/"
+>
+  <section class="hero-grid">
+    <div class="reveal">
+      <p class="eyebrow">Diploma in CS, AIML student</p>
+      <h1 class="display">I build calm, useful things with ML and code.</h1>
+      <p class="lede">
+        I am Mohammed Ayaan Ahmed. I study computer science with a focus on AI and ML. I like clear
+        interfaces, honest results and projects that solve small problems well.
+      </p>
+      <div class="hero-meta">
+        <span class="pill">Python</span>
+        <span class="pill">Machine Learning basics</span>
+        <span class="pill">Data handling</span>
+        <span class="pill">Web fundamentals</span>
+      </div>
+      <div class="hero-actions">
+        <a class="btn btn-solid" href="/projects">View work</a>
+        <a class="btn btn-ghost" href="/hire-me">Hire me</a>
+      </div>
+    </div>
+
+    <dl class="hero-side reveal">
+      <div>
+        <dt>Currently</dt>
+        <dd>Diploma student, building foundations in ML and software</dd>
+      </div>
+      <div>
+        <dt>Focus</dt>
+        <dd>Python, scikit-learn, pandas, Astro for the web</dd>
+      </div>
+      <div>
+        <dt>Contact</dt>
+        <dd><a href="mailto:ayaanmsrit@gmail.com">ayaanmsrit@gmail.com</a></dd>
+      </div>
+      <div>
+        <dt>Elsewhere</dt>
+        <dd>
+          <a href="https://github.com/lapsecoder" target="_blank" rel="noreferrer">GitHub</a>
+          <span> · </span>
+          <a
+            href="https://www.instagram.com/ayaanahmed_1711/"
+            target="_blank"
+            rel="noreferrer">Instagram</a
+          >
+        </dd>
+      </div>
+    </dl>
+  </section>
+
+  <hr class="rule" />
+
+  <section class="section">
+    <SectionHeading
+      eyebrow="Selected work"
+      title="Work with clear intent"
+      copy="Each project gets its own page with context, approach and outcome. One case study so far, with more work to follow."
+    />
+    {
+      featured.length === 0 ? (
+        <div class="card empty reveal">
+          <h3>Projects are on the way</h3>
+          <p class="lede">
+            I am keeping this space clean instead of adding filler. New case studies will appear here
+            and on the Work page when they are ready.
+          </p>
+          <p>
+            <a class="arrow-link" href="/projects">Go to Work →</a>
+          </p>
+        </div>
+      ) : (
+        <div class="work-grid">
+          {featured.map((p) => (
+            <a class="card preview-card reveal" href={`/projects/${p.id}`}>
+              <h3>{p.data.title}</h3>
+              <p>{p.data.summary}</p>
+              <span class="arrow-link">Open case study →</span>
+            </a>
+          ))}
+        </div>
+      )
+    }
+  </section>
+
+  <section class="section">
+    <div class="two-col">
+      <a class="card preview-card reveal" href="/about">
+        <p class="eyebrow">About</p>
+        <h3>Student first, builder always</h3>
+        <p>Education, skills and learning journey on one focused page.</p>
+        <span class="arrow-link">Open About →</span>
+      </a>
+      <a class="card preview-card reveal" href="/hire-me">
+        <p class="eyebrow">Hire Me</p>
+        <h3>Simple process, clear communication</h3>
+        <p>Availability, what I can help with and how to reach me.</p>
+        <span class="arrow-link">Open Hire Me →</span>
+      </a>
+    </div>
+  </section>
+</BaseLayout>

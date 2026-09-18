@@ -1,0 +1,35 @@
+---
+title: ResumeForge
+summary: Privacy focused AI platform that checks resume fit for target roles and job descriptions, with skill gaps and ATS feedback.
+stack: ["Next.js", "TypeScript", "FastAPI", "scikit-learn", "Sentence Transformers"]
+role: Design and build
+---
+
+## What it does
+
+ResumeForge is a local first AI career platform. It reads a resume, compares it with a target role or a specific job description, then shows compatibility, missing skills, experience gaps and clear next steps for improvement.
+
+## Key capabilities
+
+* Resume intelligence: upload PDF, DOCX or TXT and get structured skills, experience, education, projects and contact details.
+* Target role check: enter a role like Machine Learning Engineer and get matched skills, missing skills and focused recommendations.
+* Job specific matching: compare a resume with one job post using hybrid deterministic plus semantic matching.
+* ATS analysis: review structure, keywords, sections, readability and alignment with the job.
+* AI copilot: local Qwen 2.5 Coder 7B through Ollama gives structured, validated suggestions with controlled edits.
+* Resume builder: edit with reusable templates, undo and redo history, validation and PDF export.
+* Application tracker: follow applications and status changes inside the same workspace.
+
+## How matching works
+
+The platform combines exact skill and keyword checks with MiniLM semantic embeddings, so related skills still match even when wording differs. A supervised ML pipeline supports compatibility experiments with training and evaluation. Results stay explainable: what matched, what is missing and what to change first.
+
+## Build notes
+
+* Frontend: Next.js, TypeScript, React, Tailwind CSS.
+* Backend: Python, FastAPI, Pydantic, SQLAlchemy with Alembic, plus PostgreSQL and pgvector infrastructure.
+* AI and ML: scikit-learn, Sentence Transformers with all-MiniLM-L6-V2, PyTorch, Ollama, hybrid semantic plus deterministic matching.
+* Engineering: REST APIs, Docker, Pytest, Vitest, ESLint, Git and GitHub.
+
+## Privacy
+
+No accounts required. Resumes, job descriptions, embeddings and results are processed transiently and are not stored permanently.

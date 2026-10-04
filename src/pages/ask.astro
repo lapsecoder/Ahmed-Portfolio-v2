@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SUGGESTIONS } from '../lib/ask/suggestions';
+import '../styles/ask.css';
+---
+
+<BaseLayout
+  title="Ask Ahmed"
+  description="Ask questions about Mohammed Ayaan Ahmed's projects, skills and education. Answers come from his portfolio's own knowledge base."
+  current="/ask"
+>
+  <div class="ask-page">
+    <header class="ask-header reveal">
+      <p class="eyebrow">Ask Ahmed</p>
+      <h1 class="display">Ask me about my work.</h1>
+      <p class="lede">
+        This assistant answers from a fixed set of documents about my projects, skills, education and
+        availability. It only answers what those documents actually say, and says so when it does not
+        know.
+      </p>
+      <ul class="ask-scope">
+        <li class="pill">Grounded in my portfolio</li>
+        <li class="pill">Shows its sources</li>
+        <li class="pill">No account needed</li>
+      </ul>
+    </header>
+
+    <div class="thread-scroll" data-scroll-region>
+      <div class="thread" data-thread role="log" aria-live="polite" aria-label="Conversation"></div>
+    </div>
+    <button type="button" class="jump" data-jump hidden>Jump to latest ↓</button>
+
+    <div class="ask-empty" data-empty>
+      <h2>Try one of these</h2>
+      <ul>
+        {
+          SUGGESTIONS.map((question) => (
+            <li>
+              <button type="button" class="suggestion" data-suggestion={question}>
+                {question}
+              </button>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="composer-wrap">
+      <form class="composer" data-composer>
+        <label class="sr-only" for="ask-input">Your question</label>
+        <textarea
+          id="ask-input"
+          data-input
+          rows="1"
+          placeholder="Ask about projects, skills, education or availability…"
+          autocomplete="off"></textarea>
+        <button type="submit" class="send" data-send disabled>Ask</button>
+      </form>
+      <p class="composer-hint">
+        <kbd>Enter</kbd> to send · <kbd>Shift</kbd>+<kbd>Enter</kbd> for a new line
+      </p>
+    </div>
+
+    <div class="toolbar">
+      <button type="button" class="arrow-link" data-clear disabled>Clear conversation</button>
+      <p class="toolbar-note">
+        Answers are generated from my portfolio documents only. If something is not covered, it will
+        say so rather than guess.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    import '../scripts/ask';
+  </script>
+</BaseLayout>

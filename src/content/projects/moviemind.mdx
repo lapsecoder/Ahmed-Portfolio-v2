@@ -1,0 +1,22 @@
+---
+title: MovieMind
+summary: An intelligent movie recommendation system that helps users discover films through machine learning and transparent, evidence-backed recommendations.
+stack: ["Python", "FastAPI", "React", "TypeScript", "Machine Learning"]
+role: Design and build
+liveUrl: "https://movie-mind-liart.vercel.app"
+repoUrl: "https://github.com/lapsecoder/MovieMind"
+featured: true
+preview: "/movie.svg"
+---
+
+## What it does
+
+MovieMind helps users discover movies through content-based recommendation. Search a film title, read its metadata and see the other films the engine considers similar, with the evidence behind every claim shown on screen.
+
+## How the recommendation works
+
+The engine is fixed-configuration retrieval over a sparse TF-IDF matrix of 5,000 films, built once at startup. Similarity is computed at request time using cosine similarity over L2-normalised per-field TF-IDF blocks. Genre weight is 0.44 and an evidence floor of three shared terms keeps results readable. Similarity is reported as a raw score, never a percentage, and returned-versus-examined counts are always visible.
+
+## What users see
+
+A TMDb attribution notice is always on screen, even when the API is unreachable. The frontend renders the backend's ranking order exactly as received — it does not re-sort, re-score, filter or reformat results.

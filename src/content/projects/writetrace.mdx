@@ -1,0 +1,26 @@
+---
+title: WriteTrace
+summary: A machine learning writing forensics system that estimates whether text is human-written or machine-generated, with a trained and evaluated supervised model.
+stack: ["Python", "FastAPI", "scikit-learn", "Astro", "Machine Learning"]
+role: Research and build
+liveUrl: "https://writetrace-nine.vercel.app"
+repoUrl: "https://github.com/lapsecoder/WriteTrace"
+featured: true
+preview: "/writetrace.svg"
+---
+
+## What it does
+
+WriteTrace estimates whether a piece of writing shows stylistic patterns associated with machine-generated text. It reports a calibrated machine/human likelihood, a 5-level classification, a confidence signal and an explicit insufficient-evidence state for short texts.
+
+## Why it exists
+
+Generative models now produce fluent prose everywhere. WriteTrace is built to make detector fragility visible: honest evaluation, calibrated uncertainty and documented failure modes are features, not embarrassments. It is a statistical estimate, not proof.
+
+## How the model works
+
+Handcrafted lexical, sentence-level, syntactic and stylometric features feed classical ML models. The selected winner uses 89 features and is trained from the artifact in `ml/models/final-v1/`. Predictions come from the trained model — never from keywords, regex or an external LLM API. Probabilities are calibrated and a reliability gate abstains on short inputs.
+
+## Evaluation
+
+Measured and published in the project docs: baselines, model selection, calibration and a locked test evaluation. The headline result on the MAGE test set is ROC-AUC 0.9618, PR-AUC 0.9799, F1(macro) 0.8856, Brier 0.0739 and ECE-10 0.0058, with out-of-distribution results and per-length slices reported alongside their failure modes.

@@ -25,36 +25,9 @@ const {
 <article
   class:list={[
     'project-card',
-    featured && 'project-card--featured',
     className,
   ].filter(Boolean)}
 >
-  <div class="project-preview">
-    {preview && (
-      <img
-        src={preview}
-        width="64"
-        height="64"
-        alt=""
-        loading="lazy"
-      />
-    )}
-    <div class="project-meta">
-      {featured && (
-        <span class="project-tag" aria-label="Featured project">
-          Featured
-        </span>
-      )}
-      {stack.length > 0 && (
-        <span class="project-stack">
-          {stack.map((s) => (
-            <span class="pill">{s}</span>
-          ))}
-        </span>
-      )}
-    </div>
-  </div>
-
   <div class="project-body">
     <h3>{title}</h3>
     <p>{summary}</p>

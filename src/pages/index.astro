@@ -4,9 +4,7 @@ import SectionHeading from '../components/SectionHeading.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import { getCollection } from 'astro:content';
 
-const projects = await getCollection('projects');
-
-const [writetrace, moviemind, resumeforge] = projects;
+const projects = await getCollection('projects');const ordered = [projects.find((p) => p.id === 'writetrace'), projects.find((p) => p.id === 'moviemind'), projects.find((p) => p.id === 'resumeforge')];
 ---
 
 <BaseLayout
@@ -71,40 +69,34 @@ const [writetrace, moviemind, resumeforge] = projects;
       copy="Three projects exploring applied machine learning, intelligent systems, and software engineering. Each project includes a live demo and its source code."
     />
     <div class="project-showcase">
-      {writetrace && (
+      {ordered[0] && (
         <ProjectCard
           class="reveal"
-          title={writetrace.data.title}
-          summary={writetrace.data.summary}
-          stack={writetrace.data.stack}
-          featured={writetrace.data.featured}
-          preview={writetrace.data.preview}
-          liveUrl={writetrace.data.liveUrl}
-          repoUrl={writetrace.data.repoUrl}
+          title={ordered[0].data.title}
+          summary={ordered[0].data.summary}
+          stack={ordered[0].data.stack}
+          liveUrl={ordered[0].data.liveUrl}
+          repoUrl={ordered[0].data.repoUrl}
         />
       )}
-      {moviemind && (
+      {ordered[1] && (
         <ProjectCard
           class="reveal"
-          title={moviemind.data.title}
-          summary={moviemind.data.summary}
-          stack={moviemind.data.stack}
-          featured={moviemind.data.featured}
-          preview={moviemind.data.preview}
-          liveUrl={moviemind.data.liveUrl}
-          repoUrl={moviemind.data.repoUrl}
+          title={ordered[1].data.title}
+          summary={ordered[1].data.summary}
+          stack={ordered[1].data.stack}
+          liveUrl={ordered[1].data.liveUrl}
+          repoUrl={ordered[1].data.repoUrl}
         />
       )}
-      {resumeforge && (
+      {ordered[2] && (
         <ProjectCard
           class="reveal"
-          title={resumeforge.data.title}
-          summary={resumeforge.data.summary}
-          stack={resumeforge.data.stack}
-          featured={resumeforge.data.featured}
-          preview={resumeforge.data.preview}
-          liveUrl={resumeforge.data.liveUrl}
-          repoUrl={resumeforge.data.repoUrl}
+          title={ordered[2].data.title}
+          summary={ordered[2].data.summary}
+          stack={ordered[2].data.stack}
+          liveUrl={ordered[2].data.liveUrl}
+          repoUrl={ordered[2].data.repoUrl}
         />
       )}
     </div>

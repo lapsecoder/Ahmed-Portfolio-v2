@@ -1,10 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
+import ProjectCard from '../components/ProjectCard.astro';
 import { getCollection } from 'astro:content';
 
 const projects = await getCollection('projects');
-const featured = projects.slice(0, 2);
+
+const [writetrace, moviemind, resumeforge] = projects;
 ---
 
 <BaseLayout
@@ -64,34 +66,48 @@ const featured = projects.slice(0, 2);
 
   <section class="section">
     <SectionHeading
-      eyebrow="Selected work"
-      title="Work with clear intent"
-      copy="Each project gets its own page with context, approach and outcome. One case study so far, with more work to follow."
+      eyebrow="Project showcase"
+      title="Three projects I have shipped"
+      copy="Three projects exploring applied machine learning, intelligent systems, and software engineering. Each project includes a live demo and its source code."
     />
-    {
-      featured.length === 0 ? (
-        <div class="card empty reveal">
-          <h3>Projects are on the way</h3>
-          <p class="lede">
-            I am keeping this space clean instead of adding filler. New case studies will appear here
-            and on the Work page when they are ready.
-          </p>
-          <p>
-            <a class="arrow-link" href="/projects">Go to Work →</a>
-          </p>
-        </div>
-      ) : (
-        <div class="work-grid">
-          {featured.map((p) => (
-            <a class="card preview-card reveal" href={`/projects/${p.id}`}>
-              <h3>{p.data.title}</h3>
-              <p>{p.data.summary}</p>
-              <span class="arrow-link">Open case study →</span>
-            </a>
-          ))}
-        </div>
-      )
-    }
+    <div class="project-showcase">
+      {writetrace && (
+        <ProjectCard
+          class="reveal"
+          title={writetrace.data.title}
+          summary={writetrace.data.summary}
+          stack={writetrace.data.stack}
+          featured={writetrace.data.featured}
+          preview={writetrace.data.preview}
+          liveUrl={writetrace.data.liveUrl}
+          repoUrl={writetrace.data.repoUrl}
+        />
+      )}
+      {moviemind && (
+        <ProjectCard
+          class="reveal"
+          title={moviemind.data.title}
+          summary={moviemind.data.summary}
+          stack={moviemind.data.stack}
+          featured={moviemind.data.featured}
+          preview={moviemind.data.preview}
+          liveUrl={moviemind.data.liveUrl}
+          repoUrl={moviemind.data.repoUrl}
+        />
+      )}
+      {resumeforge && (
+        <ProjectCard
+          class="reveal"
+          title={resumeforge.data.title}
+          summary={resumeforge.data.summary}
+          stack={resumeforge.data.stack}
+          featured={resumeforge.data.featured}
+          preview={resumeforge.data.preview}
+          liveUrl={resumeforge.data.liveUrl}
+          repoUrl={resumeforge.data.repoUrl}
+        />
+      )}
+    </div>
   </section>
 
   <section class="section">

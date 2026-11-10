@@ -1,9 +1,12 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
 import { getCollection } from 'astro:content';
 
 const projects = await getCollection('projects');
+
+const ordered = [projects.find((p) => p.id === 'writetrace'), projects.find((p) => p.id === 'moviemind'), projects.find((p) => p.id === 'resumeforge')];
 ---
 
 <BaseLayout
@@ -21,29 +24,39 @@ const projects = await getCollection('projects');
   </div>
 
   <section class="section">
-    {
-      projects.length === 0 ? (
-        <div class="card empty reveal">
-          <h3>Nothing published yet</h3>
-          <p class="lede">
-            I will add case studies here as soon as they are ready. Each one will explain the problem,
-            the approach and what I learned.
-          </p>
-          <p>
-            <a class="arrow-link" href="/hire-me">Discuss an idea →</a>
-          </p>
-        </div>
-      ) : (
-        <div class="work-grid">
-          {projects.map((p) => (
-            <a class="card preview-card reveal" href={`/projects/${p.id}`}>
-              <h3>{p.data.title}</h3>
-              <p>{p.data.summary}</p>
-              <span class="arrow-link">Open case study →</span>
-            </a>
-          ))}
-        </div>
-      )
-    }
+    <SectionHeading
+      eyebrow="Project showcase"
+      title="Three projects I have shipped"
+      copy="Three projects exploring applied machine learning, intelligent systems, and software engineering. Each project includes a live demo and its source code."
+    />
+    <div class="project-showcase">
+      {ordered[0] && (
+        <ProjectCard
+          title={ordered[0].data.title}
+          summary={ordered[0].data.summary}
+          stack={ordered[0].data.stack}
+          liveUrl={ordered[0].data.liveUrl}
+          repoUrl={ordered[0].data.repoUrl}
+        />
+      )}
+      {ordered[1] && (
+        <ProjectCard
+          title={ordered[1].data.title}
+          summary={ordered[1].data.summary}
+          stack={ordered[1].data.stack}
+          liveUrl={ordered[1].data.liveUrl}
+          repoUrl={ordered[1].data.repoUrl}
+        />
+      )}
+      {ordered[2] && (
+        <ProjectCard
+          title={ordered[2].data.title}
+          summary={ordered[2].data.summary}
+          stack={ordered[2].data.stack}
+          liveUrl={ordered[2].data.liveUrl}
+          repoUrl={ordered[2].data.repoUrl}
+        />
+      )}
+    </div>
   </section>
 </BaseLayout>
